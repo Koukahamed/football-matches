@@ -1,0 +1,30 @@
+name: Test Envoi Email
+
+on:
+  schedule:
+    # Lancer l'exécution tous les jours à 20h40 UTC (ajuste selon besoin)
+    - cron: '40 20 * * *'
+
+jobs:
+  send_email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Vérifier le code source
+        uses: actions/checkout@v2
+
+      - name: Configurer Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Installer les dépendances
+        run: |
+          python -m pip install --upgrade pip
+          pip install smtplib
+
+      - name: Exécuter le script Python pour envoyer un e-mail
+        run: |
+          python send_email.py
+        env:
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
