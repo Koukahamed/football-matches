@@ -2,9 +2,8 @@ name: Automatiser l'envoi d'email avec Football API
 
 on:
   schedule:
-    # Lancer l'exécution tous les jours à 8h00 UTC
-    - cron: '44 20 * * *'
-
+    # Lancer l'exécution tous les jours à 20h40 heure de Paris (18h40 UTC)
+    - cron: '50 20 * * *'
 
 jobs:
   run_script:
