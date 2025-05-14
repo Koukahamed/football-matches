@@ -5,6 +5,7 @@ on:
     # Lancer l'exécution tous les jours à 8h00 UTC
     - cron: '40 20 * * *'
 
+
 jobs:
   run_script:
     runs-on: ubuntu-latest
