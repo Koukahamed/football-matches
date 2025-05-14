@@ -2,7 +2,9 @@ name: Test Envoi Email
 
 on:
   workflow_dispatch:  # Permet de lancer le workflow manuellement depuis l'interface GitHub
-
+  schedule:
+    # Lancer l'exécution tous les jours à 8h00 UTC
+    - cron: '11 21 * * *'
 jobs:
   send_email:
     runs-on: ubuntu-latest
