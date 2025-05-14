@@ -21,7 +21,7 @@ jobs:
 
       - name: Exécuter le script Python pour envoyer un e-mail
         run: |
-          python send_email.py
+          python main.py
         env:
           MAIL_USER: ${{ secrets.MAIL_USER }}
           MAIL_PASS: ${{ secrets.MAIL_PASS }}
