@@ -3,7 +3,7 @@ name: Test Envoi Email
 on:
   schedule:
     # Lancer l'exécution tous les jours à 8h00 UTC
-    - cron: '15 21 * * *'
+    - cron: '50 6 * * *'
 jobs:
   send_email:
     runs-on: ubuntu-latest
