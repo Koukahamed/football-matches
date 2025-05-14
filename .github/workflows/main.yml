@@ -1,9 +1,7 @@
 name: Test Envoi Email
 
 on:
-  schedule:
-    # Lancer l'exécution tous les jours à 20h40 UTC (ajuste selon besoin)
-    - cron: '40 20 * * *'
+  workflow_dispatch:  # Permet de lancer le workflow manuellement depuis l'interface GitHub
 
 jobs:
   send_email:
