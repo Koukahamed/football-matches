@@ -1,31 +1,17 @@
-name: Automatiser l'envoi d'email avec Football API
+name: Test Simple Workflow
 
 on:
-  schedule:
-    # Lancer l'exécution tous les jours à 20h40 heure de Paris (18h40 UTC)
-    - cron: '50 20 * * *'
+  push:
+    branches:
+      - main  # Déclenchement sur un push vers la branche "main"
 
 jobs:
-  run_script:
+  hello_world:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Vérifier le code source
+      - name: Checkout the code
         uses: actions/checkout@v2
 
-      - name: Configurer Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.11'
-
-      - name: Installer les dépendances
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Exécuter le script Python
-        run: |
-          python main.py
-        env:
-          FOOTBALL_API_KEY: ${{ secrets.FOOTBALL_API_KEY }}
-          MAIL_USER: ${{ secrets.MAIL_USER }}
-          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+      - name: Afficher un message
+        run: echo "Hello, World!"
