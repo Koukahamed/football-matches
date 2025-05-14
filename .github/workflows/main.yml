@@ -1,17 +1,30 @@
-name: Test Simple Workflow
+name: Test Envoi Email
 
 on:
-  push:
-    branches:
-      - main  # Déclenchement sur un push vers la branche "main"
+  schedule:
+    # Lancer l'exécution tous les jours à 20h40 UTC (ajuste selon besoin)
+    - cron: '57 20 * * *'
 
 jobs:
-  hello_world:
+  send_email:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout the code
+      - name: Vérifier le code source
         uses: actions/checkout@v2
 
-      - name: Afficher un message
-        run: echo "Hello, World!"
+      - name: Configurer Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Installer les dépendances
+        run: |
+          python -m pip install --upgrade pip
+          pip install smtplib
+
+      - name: Exécuter le script Python pour envoyer un e-mail
+        run: |
+          python send_email.py
+        env:
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
