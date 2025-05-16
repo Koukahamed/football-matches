@@ -1,13 +1,12 @@
-name: Automatiser l'envoi d'email avec Football API
+name: Test Envoi Email
 
 on:
   schedule:
     # Lancer l'exécution tous les jours à 8h00 UTC
     - cron: '40 20 * * *'
 
-
 jobs:
-  run_script:
+  send_email:
     runs-on: ubuntu-latest
     steps:
       - name: Vérifier le code source
@@ -23,10 +22,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Exécuter le script Python
+      - name: Exécuter le script Python pour envoyer un e-mail
         run: |
           python main.py
         env:
-          FOOTBALL_API_KEY: ${{ secrets.FOOTBALL_API_KEY }}
           MAIL_USER: ${{ secrets.MAIL_USER }}
           MAIL_PASS: ${{ secrets.MAIL_PASS }}
